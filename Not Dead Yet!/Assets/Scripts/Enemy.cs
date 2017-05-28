@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour {
 		Destroy (gameObject);
 
 	}
+	//when the collider hits another and it has a tag of obstacle it calls the Die function
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Obstacle") {
 			Destroy (this.gameObject);
