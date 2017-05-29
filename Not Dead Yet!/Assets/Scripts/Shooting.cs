@@ -25,6 +25,8 @@ public class Shooting : MonoBehaviour {
 	private bool isReloading = false;
 	// allows the ammo count to be displayed on the screen.
 	public Text AmmoCount;
+	public ParticleSystem muzzleFlash;
+	public ParticleSystem impactEffect;
 
 	// Use this for initialization
 	void Start () 
@@ -72,6 +74,7 @@ public class Shooting : MonoBehaviour {
 	}
 	void Shoot()
 	{
+		muzzleFlash.Play ();
 		currentAmmo--;
 		AmmoCounter ();
 		// this will send a raycast out from the player and towards the left hand side of the screen.
@@ -85,7 +88,7 @@ public class Shooting : MonoBehaviour {
 			if (enemy != null) {
 				enemy.takeDamage (damage);
 			}
-
+			Instantiate (impactEffect, hit.point, Quaternion.LookRotation (hit.normal));
 				
 		}
 
