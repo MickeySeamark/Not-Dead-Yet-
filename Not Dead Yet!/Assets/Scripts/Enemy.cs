@@ -17,13 +17,18 @@ public class Enemy : MonoBehaviour {
 	    void Start () {
 	        player = GameObject.FindGameObjectWithTag ("Player");
 	        navAgent = GetComponent<NavMeshAgent> ();
+			
 	    }
+
 	
 	    void Update () {
 // every frame the enemy will look for the players position and head towards it.
-		if (Vector3.Distance (transform.position, player.transform.position) < detectionRange) {
-			navAgent.destination = player.transform.position;
+		if(player != null){
+			if (Vector3.Distance (transform.position, player.transform.position) < detectionRange) {
+				navAgent.destination = player.transform.position;
+			}
 		}
+
 	}
 
 //allows the enemy to take damage

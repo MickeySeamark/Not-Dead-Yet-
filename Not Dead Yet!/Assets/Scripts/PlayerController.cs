@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
 		Vector3 movement = new Vector3 (axisX, 0, axisZ);
 		transform.Translate (movement * movementSpeed * Time.deltaTime);
 	}
-		//allows the enemy to take damage
+		//allows the enemy to take damage 
 		public void takeDamage (float amount)
 		{
 		//makes the players health adjust as it takes damage. once its reached 0 or below 

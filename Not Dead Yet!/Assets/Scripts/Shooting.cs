@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 
 public class Shooting : MonoBehaviour {
 	//how much damge the shot will do.
@@ -23,6 +23,8 @@ public class Shooting : MonoBehaviour {
 
 	//used to make the gun only reload when out of ammo.
 	private bool isReloading = false;
+	// allows the ammo count to be displayed on the screen.
+	public Text AmmoCount;
 
 	// Use this for initialization
 	void Start () 
@@ -30,9 +32,15 @@ public class Shooting : MonoBehaviour {
 		//makes the players ammo count minus 1 per bullet shot.
 		if (currentAmmo == -1)
 			currentAmmo = maxAmmo;
+
+		AmmoCounter ();
 		
 	}
-	
+	private void AmmoCounter()
+	{
+		AmmoCount.text = currentAmmo.ToString ();
+	}
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -65,19 +73,21 @@ public class Shooting : MonoBehaviour {
 	void Shoot()
 	{
 		currentAmmo--;
+		AmmoCounter ();
 		// this will send a raycast out from the player and towards the left hand side of the screen.
 		RaycastHit hit;
-		if (Physics.Raycast(player.transform.position, player.transform.right, out hit, range))
-		{
+		if (Physics.Raycast (player.transform.position, player.transform.right, out hit, range)) {
 			//this lets us know what the raycast hit.
 			Debug.Log (hit.transform.name);
 		
 			//a variable so that it will only damage things labled enemy
-			Enemy enemy = hit.transform.GetComponent<Enemy>();
-			if (enemy != null )
-			{
+			Enemy enemy = hit.transform.GetComponent<Enemy> ();
+			if (enemy != null) {
 				enemy.takeDamage (damage);
 			}
+
+				
 		}
+
 	}
 }
