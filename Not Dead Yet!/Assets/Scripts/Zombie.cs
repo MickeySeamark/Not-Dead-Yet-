@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Zombie : MonoBehaviour {
-//setting the speed that the object will move
+
+	//setting the speed that the object will move
 	public float speed = 1f;
-// the position of the zombieparent object that the spawned zombies will be parented to.
-	public Transform zombieParent;
+
 	//-----------------------------------------------------------------------------
 	//Start()
 	//called on the first frame of the game to run the functions listed with in it.

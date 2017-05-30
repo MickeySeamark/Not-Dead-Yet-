@@ -60,7 +60,8 @@ public class Spawner : MonoBehaviour {
 	//--------------------------------------------------------------------------------
 	void SpawnObject(){
 		time = 0;
-		Instantiate (spawnPrefab1, transform.position, spawnPrefab1.transform.rotation);
+		GameObject GO = Instantiate (spawnPrefab1, transform.position, spawnPrefab1.transform.rotation);
+		GO.transform.SetParent (ObjectParent);
 	}
 	//-------------------------------------------------------------------------------
 	//SetRandomTime()
