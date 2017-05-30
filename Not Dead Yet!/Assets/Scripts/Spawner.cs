@@ -3,28 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour {
-
-//	public Transform spawnOne;
-//	public Transform spawnTwo;
-//	public Transform spawnThree;
-//	public Transform spawnFour;
+	//gameObject to be spawned
 	public GameObject spawnPrefab1;
-//	public float spawnSpeed = 10f; 
+	//the position of the parent of the spawned object
 	public Transform ObjectParent;
+	//maximum time it will take to spawn 
 	public float maxTime = 5;
+	//minimum time it will take to spawn
 	public float minTime = 2;
+	//a float to represent the current time 
 	private float time;
+	//float to represent the spawn time
 	private float spawnTime;
 
-	// Use this for initialization
+	//-----------------------------------------------------------------------------
+	//Start()
+	//called on the first frame of the game to run the functions listed with in it.
+	//
+	//Param:
+	//		none
+	//Return:
+	//		Void
+	//-------------------------------------------------------------------------------
 	void Start () {
 		SetRandomTime ();
 		time = minTime;
-//		spawnPrefab1.transform.position = spawnOne.transform.position;
 
 	}
 	
-	// Update is called once per frame
+	//-------------------------------------------------------------------------------
+	//FixedUpdate()
+	//called every fixed framerate frame to deal with rigidbody updates.
+	//
+	//Param:
+	//		None
+	//Return:
+	//		Void
+	//--------------------------------------------------------------------------------
 	void FixedUpdate () {
 		time += Time.deltaTime;
 		if (time >= spawnTime){
@@ -32,16 +47,30 @@ public class Spawner : MonoBehaviour {
 			SetRandomTime();
 
 		}
-//		
-//			GameObject GO = Instantiate (spawnPrefab1, spawnOne.position, Quaternion.identity) as GameObject;
-//			GO.GetComponent<Rigidbody> ().AddForce (spawnOne.transform.right * spawnSpeed, ForceMode.Impulse);
-//		GO.transform.SetParent (ObstacleParent);
 
 	}
+	//-------------------------------------------------------------------------------
+	//SpawnObject()
+	//Creates an object when called
+	//
+	//Param:
+	//		None
+	//Return:
+	//		Void
+	//--------------------------------------------------------------------------------
 	void SpawnObject(){
 		time = 0;
 		Instantiate (spawnPrefab1, transform.position, spawnPrefab1.transform.rotation);
 	}
+	//-------------------------------------------------------------------------------
+	//SetRandomTime()
+	//creates a function that will activate at random intervals in a set time frame
+	//
+	//Param:
+	//		None
+	//Return:
+	//		Void
+	//--------------------------------------------------------------------------------
 	void SetRandomTime(){
 		spawnTime = Random.Range (minTime, maxTime);
 	}

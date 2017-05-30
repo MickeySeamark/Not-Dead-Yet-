@@ -3,20 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Zombie : MonoBehaviour {
-	//setting the speed that the object will move
+//setting the speed that the object will move
 	public float speed = 1f;
-	// Use this for initialization
+// the position of the zombieparent object that the spawned zombies will be parented to.
+	public Transform zombieParent;
+	//-----------------------------------------------------------------------------
+	//Start()
+	//called on the first frame of the game to run the functions listed with in it.
+	//
+	//Param:
+	//		none
+	//Return:
+	//		Void
+	//-------------------------------------------------------------------------------
 	void Start () {
 
 	}
-
-	// Update is called once per frame
+	//-------------------------------------------------------------------------------
+	//Update()
+	//called every frame to see if any of the functions listed within it need to be called.
+	//
+	//Param:
+	//		None
+	//Return:
+	//		Void
+	//--------------------------------------------------------------------------------
 	void Update () {
-		//moves the player to the right of the screen based on the speed set in the float, 
-		//being checked each frame
 		transform.Translate (-speed * Time.deltaTime, 0, 0);
 	}
-	//when the objects collider hits another with the tag "KillZone" it destroys itsef
+	//--------------------------------------------------------------------------------
+	//OnTriggerEnter()
+	//Trigger Detection, Detects when the object passes through a triggerbox and then destroys itself.
+	//
+	//Param:
+	//		Collider other - the collider of any other objects that pass into this triger.
+	//Return:
+	//		Void
+	//--------------------------------------------------------------------------------
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "KillZone") {
 			Destroy (this.gameObject);

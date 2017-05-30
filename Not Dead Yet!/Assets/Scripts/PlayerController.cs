@@ -12,12 +12,28 @@ public class PlayerController : MonoBehaviour {
 	//setting the players health
 	public float health = 100;
 
-	// Use this for initialization
+	//-----------------------------------------------------------------------------
+	//Start()
+	//called on the first frame of the game to run the functions listed with in it.
+	//
+	//Param:
+	//		none
+	//Return:
+	//		Void
+	//-------------------------------------------------------------------------------
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
+	//-------------------------------------------------------------------------------
+	//Update()
+	//called every frame to see if any of the functions listed within it need to be called.
+	//
+	//Param:
+	//		None
+	//Return:
+	//		Void
+	//--------------------------------------------------------------------------------
 	void Update () {
 		//Move player along the X and Z Axis using the left analog stick on the Xbox Controller.
 		float axisX = XCI.GetAxis (XboxAxis.LeftStickX, controller);
@@ -25,7 +41,17 @@ public class PlayerController : MonoBehaviour {
 		Vector3 movement = new Vector3 (axisX, 0, axisZ);
 		transform.Translate (movement * movementSpeed * Time.deltaTime);
 	}
-		//allows the enemy to take damage 
+	//--------------------------------------------------------------------------------
+	//takeDamage()
+	//called when the object hits something that has a Damage variable and adjusts the objects health acordingly
+	//
+	//Param:
+	//		health - the amount of damage the object can take before dying
+	//		amount - the damage of to the object that adjusts the health
+	//		
+	//Return:
+	//		Void
+	//--------------------------------------------------------------------------------
 		public void takeDamage (float amount)
 		{
 		//makes the players health adjust as it takes damage. once its reached 0 or below 
@@ -37,13 +63,30 @@ public class PlayerController : MonoBehaviour {
 				Die ();
 			}
 		}
-
+	//--------------------------------------------------------------------------------
+	//Die()
+	//when called it destroys the gameobject
+	//
+	//Param:
+	//		
+	//		
+	//Return:
+	//		Void
+	//--------------------------------------------------------------------------------
 		void Die ()
 	//when the die function is called it destroys the gameobject.
 		{
 			Destroy (gameObject);
 	}
-	// when the collider hits another and the tag is called obstacle the die function is called.
+	//--------------------------------------------------------------------------------
+	//OnTriggerEnter()
+	//Trigger Detection, Detects when the object passes through a triggerbox and then destroys itself.
+	//
+	//Param:
+	//		Collider other - the collider of any other objects that pass into this triger.
+	//Return:
+	//		Void
+	//--------------------------------------------------------------------------------
 	void OnTriggerEnter(Collider other){
 		if (other.tag == "Obstacle") {
 			Die ();
@@ -53,9 +96,6 @@ public class PlayerController : MonoBehaviour {
 		if (other.tag == "Hazard") {
 			Die ();
 		}
-//
-//	}
-//	void Respawn() {
-//		transform.position = Vector3.zero;
+
 	}
 }
