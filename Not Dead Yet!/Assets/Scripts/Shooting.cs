@@ -32,6 +32,7 @@ public class Shooting : MonoBehaviour {
 
 // A reference to the particle system
 		public ParticleSystem impactEffect;
+	public Transform particleParent;
 
 //-----------------------------------------------------------------------------
 //Start()
@@ -157,8 +158,9 @@ public class Shooting : MonoBehaviour {
 			//Return:
 			//		Void
 			//--------------------------------------------------------------------------------
-			Instantiate (impactEffect, hit.point, Quaternion.LookRotation (hit.normal));
-				
+			ParticleSystem GO = Instantiate (impactEffect, hit.point, Quaternion.LookRotation (hit.normal));
+			GO.transform.SetParent (particleParent);
+		
 		}
 
 	}
