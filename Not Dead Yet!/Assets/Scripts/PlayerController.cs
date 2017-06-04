@@ -12,6 +12,15 @@ public class PlayerController : MonoBehaviour {
 	//setting the players health
 	public float health = 100;
 
+	private bool isDead = false;
+
+	public ParticleSystem deathEffect;
+	public Transform particleParent;
+
+
+//	public float xMin, xMax, zMin, zMax;
+
+
 	//-----------------------------------------------------------------------------
 	//Start()
 	//called on the first frame of the game to run the functions listed with in it.
@@ -35,12 +44,21 @@ public class PlayerController : MonoBehaviour {
 	//		Void
 	//--------------------------------------------------------------------------------
 	void Update () {
+
+		if (isDead)
+			return;
 		//Move player along the X and Z Axis using the left analog stick on the Xbox Controller.
 		float axisX = XCI.GetAxis (XboxAxis.LeftStickX, controller);
 		float axisZ = XCI.GetAxis (XboxAxis.LeftStickY, controller);
 		Vector3 movement = new Vector3 (axisX, 0, axisZ);
 		transform.Translate (movement * movementSpeed * Time.deltaTime);
-	}
+
+//		{
+//			Mathf.Clamp (Rigidbody.position.x, xmin, xmax);
+//			0.0f;
+//			Mathf.Clamp (Rigidbody.position.z, zxmin, zmax);
+//	}
+}
 	//--------------------------------------------------------------------------------
 	//takeDamage()
 	//called when the object hits something that has a Damage variable and adjusts the objects health acordingly
@@ -76,7 +94,9 @@ public class PlayerController : MonoBehaviour {
 		void Die ()
 	//when the die function is called it destroys the gameobject.
 		{
-			Destroy (gameObject);
+		isDead = true;
+		deathEffect.Play ();
+		GetComponent<Score> ().OnDeath ();
 	}
 	//--------------------------------------------------------------------------------
 	//OnTriggerEnter()

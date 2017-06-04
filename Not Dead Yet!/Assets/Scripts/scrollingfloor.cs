@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scrollingfloor : MonoBehaviour {
+public class Scrollingfloor : MonoBehaviour {
 	//setting the speed that the material will scroll
 	public float scrollSpeed = 0.01F;
 	//the material that needs to be scrolled
