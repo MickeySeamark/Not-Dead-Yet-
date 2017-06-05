@@ -32,6 +32,8 @@ public class Shooting : MonoBehaviour {
 
 // A reference to the particle system
 		public ParticleSystem impactEffect;
+
+//a parent for the particles to be attached to so they dont clog up the heirachy
 	public Transform particleParent;
 
 //-----------------------------------------------------------------------------
