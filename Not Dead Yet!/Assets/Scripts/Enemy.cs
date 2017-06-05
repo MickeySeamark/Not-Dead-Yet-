@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour {
 	public GameObject player;
 // allowing the script to access the Nav agent.
 	private NavMeshAgent navAgent;
+// the total amount of points awarded to the player for killing the enemy
+	public float enemyScore = 50;
 //-----------------------------------------------------------------------------
 //Start()
 //called on the first frame of the game to run the functions listed with in it.
@@ -50,7 +52,7 @@ public class Enemy : MonoBehaviour {
 	}
 //--------------------------------------------------------------------------------
 //takeDamage()
-//called when the object hits something that has a Damage variable and adjusts the objects health acordingly
+//called when the object hits something that has a Damage variable and adjusts the objects health acordingly. adding points to the players score
 //
 //Param:
 //		health - the amount of damage the object can take before dying
@@ -59,13 +61,13 @@ public class Enemy : MonoBehaviour {
 //Return:
 //		Void
 //--------------------------------------------------------------------------------
-	public void takeDamage (float amount)
-	{
+	public void takeDamage (float amount){
 //health is adjusted based on how much damage is taken.
 		health -= amount;
 //if health is lower or equal to zero the Die function is called.
 		if (health <= 0f) {
 			Die ();
+			GameObject.Find("Player").GetComponent<Score>().score += enemyScore;
 		}
 	}
 //--------------------------------------------------------------------------------

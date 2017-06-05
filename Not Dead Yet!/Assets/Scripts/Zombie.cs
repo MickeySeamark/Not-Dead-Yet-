@@ -6,6 +6,7 @@ public class Zombie : MonoBehaviour {
 
 	//setting the speed that the object will move
 	public float speed = 1f;
+	public float scoreValue = 15;
 
 	//-----------------------------------------------------------------------------
 	//Start()

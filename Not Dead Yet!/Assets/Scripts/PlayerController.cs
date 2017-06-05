@@ -11,15 +11,12 @@ public class PlayerController : MonoBehaviour {
 	public float movementSpeed = 0.1f;
 	//setting the players health
 	public float health = 100;
-
+	//determine if the player is dead or not trigegering the game over screen when true
 	private bool isDead = false;
-
+	//particle effect played on death
 	public ParticleSystem deathEffect;
+	//the parent for the death particle to keep the heirachy clean
 	public Transform particleParent;
-
-
-//	public float xMin, xMax, zMin, zMax;
-
 
 	//-----------------------------------------------------------------------------
 	//Start()
@@ -52,12 +49,6 @@ public class PlayerController : MonoBehaviour {
 		float axisZ = XCI.GetAxis (XboxAxis.LeftStickY, controller);
 		Vector3 movement = new Vector3 (axisX, 0, axisZ);
 		transform.Translate (movement * movementSpeed * Time.deltaTime);
-
-//		{
-//			Mathf.Clamp (Rigidbody.position.x, xmin, xmax);
-//			0.0f;
-//			Mathf.Clamp (Rigidbody.position.z, zxmin, zmax);
-//	}
 }
 	//--------------------------------------------------------------------------------
 	//takeDamage()
