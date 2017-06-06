@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour {
 		{
 		isDead = true;
 		deathEffect.Play ();
+		transform.GetChild (2).gameObject.SetActive (false);
 		GetComponent<Score> ().OnDeath ();
 	}
 	//--------------------------------------------------------------------------------
