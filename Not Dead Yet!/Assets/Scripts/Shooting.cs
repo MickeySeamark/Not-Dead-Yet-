@@ -33,6 +33,9 @@ public class Shooting : MonoBehaviour {
 // A reference to the particle system
 		public ParticleSystem impactEffect;
 
+	//Reloading text
+	public Text reloadingText;
+
 //a parent for the particles to be attached to so they dont clog up the heirachy
 	public Transform particleParent;
 
@@ -112,13 +115,16 @@ public class Shooting : MonoBehaviour {
 	{
 		//when the player begins to reload they cannot shoot for a period of time.
 		isReloading = true;
+		reloadingText.gameObject.SetActive (true); 
 		Debug.Log("reloading...");
 		yield return new WaitForSeconds (reloadTime);
+		reloadingText.gameObject.SetActive (false);
 		//when the current ammo is back to max ammo the reloading ends.
 		currentAmmo = maxAmmo;
 		isReloading = false;
 		//sends the total ammo avalible to the UI
 		AmmoCounter ();
+	
 	}
 	//-------------------------------------------------------------------------------
 	//Shoot()
