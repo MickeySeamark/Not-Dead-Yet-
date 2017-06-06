@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using XboxCtrlrInput;
 
 public class GameOver : MonoBehaviour {
 	//displays the final score achieved 
@@ -40,8 +41,14 @@ public class GameOver : MonoBehaviour {
 		if (!isShown)
 			return;
 
+
+
 		transistion += Time.deltaTime;
 		backgroundImage.color = Color.Lerp (new Color (0, 0, 0, 0), Color.black, transistion);
+		if (XCI.GetButtonDown(XboxButton.Start)) {
+			Retry ();
+		}
+
 	}
 	//-------------------------------------------------------------------------------
 	//ToggleGameOverScreen()
@@ -55,7 +62,10 @@ public class GameOver : MonoBehaviour {
 	public void ToggleGameOverScreen (float score){
 		gameObject.SetActive (true);
 		scoreText.text = ((int)score).ToString ();
+
 		isShown = true;
+
+
 
 	}
 	//-------------------------------------------------------------------------------
@@ -68,7 +78,11 @@ public class GameOver : MonoBehaviour {
 	//		Void
 	//--------------------------------------------------------------------------------
 	public void Retry (){
-		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+		
+//		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
+
+		Debug.Log("RETRY!!!");
+		SceneManager.LoadScene("Main");
 
 	}
 	//-------------------------------------------------------------------------------
