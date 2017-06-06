@@ -72,6 +72,8 @@ public class Enemy : MonoBehaviour {
 		health -= amount;
 //if health is lower or equal to zero the Die function is called.
 		if (health <= 0f) {
+			GameObject GO = Instantiate (deathEffect, particleSpawn.position, Quaternion.identity) as GameObject;
+			GO.transform.SetParent (particleParent);
 			Die ();
 			GameObject.Find("Player").GetComponent<Score>().score += enemyScore;
 		}
@@ -89,9 +91,8 @@ public class Enemy : MonoBehaviour {
 //--------------------------------------------------------------------------------
 	void Die ()	{
 //when the death function is called the game object is destroyed.
-		GameObject GO = Instantiate (deathEffect, particleSpawn.position, Quaternion.identity) as GameObject;
-		GO.transform.SetParent (particleParent);{
-		Destroy (gameObject);
+	
+		Destroy (gameObject);{
 	
 
 	}
