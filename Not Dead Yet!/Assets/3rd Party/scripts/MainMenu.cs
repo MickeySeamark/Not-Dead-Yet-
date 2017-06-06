@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using XboxCtrlrInput;
 public class MainMenu : MonoBehaviour {
 	//displays the current highscore
 	public Text highscoreText;
@@ -46,3 +47,4 @@ public class MainMenu : MonoBehaviour {
 		SceneManager.LoadScene("Main");
 	}
 }
+

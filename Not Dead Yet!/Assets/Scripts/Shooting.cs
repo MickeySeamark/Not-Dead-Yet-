@@ -39,6 +39,7 @@ public class Shooting : MonoBehaviour {
 //a parent for the particles to be attached to so they dont clog up the heirachy
 	public Transform particleParent;
 
+
 //-----------------------------------------------------------------------------
 //Start()
 //called on the first frame of the game to run the functions listed with in it.
