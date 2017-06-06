@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour {
 // the total amount of points awarded to the player for killing the enemy
 	public float enemyScore = 50;
 	//particle effect played on death
-	public ParticleSystem deathEffect;
+	public GameObject deathEffect;
 	//the parent for the death particle to keep the heirachy clean
 	public Transform particleParent;
 	public Transform particleSpawn;
@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour {
 //--------------------------------------------------------------------------------
 	void Die ()	{
 //when the death function is called the game object is destroyed.
-		ParticleSystem GO = Instantiate (deathEffect, particleSpawn.position, Quaternion.identity);
+		GameObject GO = Instantiate (deathEffect, particleSpawn.position, Quaternion.identity) as GameObject;
 		GO.transform.SetParent (particleParent);{
 		Destroy (gameObject);
 	
