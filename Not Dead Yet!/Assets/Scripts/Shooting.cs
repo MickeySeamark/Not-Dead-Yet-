@@ -114,6 +114,7 @@ public class Shooting : MonoBehaviour {
 //--------------------------------------------------------------------------------
 	IEnumerator Reload ()
 	{
+		
 		//when the player begins to reload they cannot shoot for a period of time.
 		isReloading = true;
 		reloadingText.gameObject.SetActive (true); 
@@ -171,6 +172,7 @@ public class Shooting : MonoBehaviour {
 			GO.transform.SetParent (particleParent);
 		
 		}
+		}
 
 	}
-}
+
